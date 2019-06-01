@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mvc.dao.UserExtendMapper">
+    <!--此处编写sql语句-->
+    <select id="selectUserByName" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user
+        where uname = #{uname}
+    </select>
+    <select id="selectUserByEmail" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user
+        where email = #{email}
+    </select>
+    <select id="selectUserByCellphone" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user
+        where cellphone = #{cellphone}
+    </select>
+    <insert id="insertAndGetKey" parameterType="com.mvc.pojo.User" >
+        <selectKey keyProperty="uid" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user (uid, upasswd, uname,
+            email, cellphone, cid,
+            regtime, rank, lognum
+        )
+        values (#{uid,jdbcType=INTEGER}, #{upasswd,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR},
+            #{email,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER},
+            #{regtime,jdbcType=TIMESTAMP}, #{rank,jdbcType=TINYINT}, #{lognum,jdbcType=INTEGER}
+        )
+    </insert>
+    <select id="getMaxUid" resultType="java.lang.Integer" >
+        select max(uid) from user
+    </select>
+</mapper>
