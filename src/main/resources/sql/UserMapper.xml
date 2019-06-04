@@ -3,17 +3,17 @@
 <mapper namespace="com.mvc.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.mvc.pojo.User" >
     <id column="uid" property="uid" jdbcType="INTEGER" />
-    <result column="upasswd" property="upasswd" jdbcType="VARCHAR" />
-    <result column="uname" property="uname" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="cellphone" property="cellphone" jdbcType="VARCHAR" />
     <result column="cid" property="cid" jdbcType="INTEGER" />
     <result column="regtime" property="regtime" jdbcType="TIMESTAMP" />
     <result column="rank" property="rank" jdbcType="TINYINT" />
-    <result column="lognum" property="lognum" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="nickname" property="nickname" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="gender" property="gender" jdbcType="VARCHAR" />
+    <result column="avatar" property="avatar" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    uid, upasswd, uname, email, cellphone, cid, regtime, rank, lognum
+    uid, cid, regtime, rank, status, nickname, birthday, gender, avatar
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -26,13 +26,13 @@
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.mvc.pojo.User" >
-    insert into user (uid, upasswd, uname, 
-      email, cellphone, cid, 
-      regtime, rank, lognum
+    insert into user (uid, cid, regtime, 
+      rank, status, nickname, 
+      birthday, gender, avatar
       )
-    values (#{uid,jdbcType=INTEGER}, #{upasswd,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR}, 
-      #{email,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER}, 
-      #{regtime,jdbcType=TIMESTAMP}, #{rank,jdbcType=TINYINT}, #{lognum,jdbcType=INTEGER}
+    values (#{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{regtime,jdbcType=TIMESTAMP}, 
+      #{rank,jdbcType=TINYINT}, #{status,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR}, 
+      #{birthday,jdbcType=DATE}, #{gender,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}
       )
   </insert>
   <insert id="insertSelective" parameterType="com.mvc.pojo.User" >
@@ -40,18 +40,6 @@
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
         uid,
-      </if>
-      <if test="upasswd != null" >
-        upasswd,
-      </if>
-      <if test="uname != null" >
-        uname,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="cellphone != null" >
-        cellphone,
       </if>
       <if test="cid != null" >
         cid,
@@ -62,25 +50,25 @@
       <if test="rank != null" >
         rank,
       </if>
-      <if test="lognum != null" >
-        lognum,
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="nickname != null" >
+        nickname,
+      </if>
+      <if test="birthday != null" >
+        birthday,
+      </if>
+      <if test="gender != null" >
+        gender,
+      </if>
+      <if test="avatar != null" >
+        avatar,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="uid != null" >
         #{uid,jdbcType=INTEGER},
-      </if>
-      <if test="upasswd != null" >
-        #{upasswd,jdbcType=VARCHAR},
-      </if>
-      <if test="uname != null" >
-        #{uname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphone != null" >
-        #{cellphone,jdbcType=VARCHAR},
       </if>
       <if test="cid != null" >
         #{cid,jdbcType=INTEGER},
@@ -91,26 +79,26 @@
       <if test="rank != null" >
         #{rank,jdbcType=TINYINT},
       </if>
-      <if test="lognum != null" >
-        #{lognum,jdbcType=INTEGER},
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        #{avatar,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.mvc.pojo.User" >
     update user
     <set >
-      <if test="upasswd != null" >
-        upasswd = #{upasswd,jdbcType=VARCHAR},
-      </if>
-      <if test="uname != null" >
-        uname = #{uname,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="cellphone != null" >
-        cellphone = #{cellphone,jdbcType=VARCHAR},
-      </if>
       <if test="cid != null" >
         cid = #{cid,jdbcType=INTEGER},
       </if>
@@ -120,22 +108,34 @@
       <if test="rank != null" >
         rank = #{rank,jdbcType=TINYINT},
       </if>
-      <if test="lognum != null" >
-        lognum = #{lognum,jdbcType=INTEGER},
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="nickname != null" >
+        nickname = #{nickname,jdbcType=VARCHAR},
+      </if>
+      <if test="birthday != null" >
+        birthday = #{birthday,jdbcType=DATE},
+      </if>
+      <if test="gender != null" >
+        gender = #{gender,jdbcType=VARCHAR},
+      </if>
+      <if test="avatar != null" >
+        avatar = #{avatar,jdbcType=VARCHAR},
       </if>
     </set>
     where uid = #{uid,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.mvc.pojo.User" >
     update user
-    set upasswd = #{upasswd,jdbcType=VARCHAR},
-      uname = #{uname,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      cellphone = #{cellphone,jdbcType=VARCHAR},
-      cid = #{cid,jdbcType=INTEGER},
+    set cid = #{cid,jdbcType=INTEGER},
       regtime = #{regtime,jdbcType=TIMESTAMP},
       rank = #{rank,jdbcType=TINYINT},
-      lognum = #{lognum,jdbcType=INTEGER}
+      status = #{status,jdbcType=VARCHAR},
+      nickname = #{nickname,jdbcType=VARCHAR},
+      birthday = #{birthday,jdbcType=DATE},
+      gender = #{gender,jdbcType=VARCHAR},
+      avatar = #{avatar,jdbcType=VARCHAR}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
 </mapper>

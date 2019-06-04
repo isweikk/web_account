@@ -39,6 +39,6 @@ public class UserMapperTest {
     public void selectUser() throws Exception {
         int uid = 1000010000;
         User user = mapper.selectByPrimaryKey(uid);
-        System.out.println(user.getUname());
+        System.out.println(user.getNickname());
     }
 }

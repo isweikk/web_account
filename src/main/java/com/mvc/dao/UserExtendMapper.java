@@ -1,11 +1,13 @@
 package com.mvc.dao;
 
 import com.mvc.pojo.User;
+import com.mvc.pojo.UserAuth;
 
-public interface UserExtendMapper extends UserMapper {
-    User selectUserByName(String uname) throws Exception;
-    User selectUserByEmail(String email) throws Exception;
-    User selectUserByCellphone(String cellphone) throws Exception;
-    Integer insertAndGetKey(User record) throws Exception;
+public interface UserExtendMapper{
+    User selectUserByName(String name) throws Exception;
+    UserAuth selectUserAuthByName(String name) throws Exception;
+    UserAuth selectUserAuthByEmail(String email) throws Exception;
+    UserAuth selectUserAuthByCellphone(String cellphone) throws Exception;
+    Integer insertUserAndGetUid(User record) throws Exception;
     Integer getMaxUid() throws Exception;
 }

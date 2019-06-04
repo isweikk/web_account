@@ -5,21 +5,21 @@ import java.util.Date;
 public class User {
     private Integer uid;
 
-    private String upasswd;
-
-    private String uname;
-
-    private String email;
-
-    private String cellphone;
-
     private Integer cid;
 
     private Date regtime;
 
     private Byte rank;
 
-    private Integer lognum;
+    private String status;
+
+    private String nickname;
+
+    private Date birthday;
+
+    private String gender;
+
+    private String avatar;
 
     public Integer getUid() {
         return uid;
@@ -27,38 +27,6 @@ public class User {
 
     public void setUid(Integer uid) {
         this.uid = uid;
-    }
-
-    public String getUpasswd() {
-        return upasswd;
-    }
-
-    public void setUpasswd(String upasswd) {
-        this.upasswd = upasswd == null ? null : upasswd.trim();
-    }
-
-    public String getUname() {
-        return uname;
-    }
-
-    public void setUname(String uname) {
-        this.uname = uname == null ? null : uname.trim();
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email == null ? null : email.trim();
-    }
-
-    public String getCellphone() {
-        return cellphone;
-    }
-
-    public void setCellphone(String cellphone) {
-        this.cellphone = cellphone == null ? null : cellphone.trim();
     }
 
     public Integer getCid() {
@@ -85,11 +53,43 @@ public class User {
         this.rank = rank;
     }
 
-    public Integer getLognum() {
-        return lognum;
+    public String getStatus() {
+        return status;
     }
 
-    public void setLognum(Integer lognum) {
-        this.lognum = lognum;
+    public void setStatus(String status) {
+        this.status = status == null ? null : status.trim();
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname == null ? null : nickname.trim();
+    }
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender == null ? null : gender.trim();
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar == null ? null : avatar.trim();
     }
 }

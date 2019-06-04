@@ -4,29 +4,38 @@
     <!--此处编写sql语句-->
     <select id="selectUserByName" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
         select * from user
-        where uname = #{uname}
+        where nickname = #{name}
     </select>
-    <select id="selectUserByEmail" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
-        select * from user
-        where email = #{email}
+    <select id="selectUserAuthByName" resultMap="com.mvc.dao.UserAuthMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user_auth
+        where identifier = #{name}
+        and id_type="NAME"
     </select>
-    <select id="selectUserByCellphone" resultMap="com.mvc.dao.UserMapper.BaseResultMap" parameterType="java.lang.String" >
-        select * from user
-        where cellphone = #{cellphone}
+    <select id="selectUserAuthByEmail" resultMap="com.mvc.dao.UserAuthMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user_auth
+        where identifier = #{email}
+        and id_type="EMAIL"
     </select>
-    <insert id="insertAndGetKey" parameterType="com.mvc.pojo.User" >
+    <select id="selectUserAuthByCellphone" resultMap="com.mvc.dao.UserAuthMapper.BaseResultMap" parameterType="java.lang.String" >
+        select * from user_auth
+        where identifier = #{cellphone}
+        and id_type="PHONE"
+    </select>
+
+    <insert id="insertUserAndGetUid" parameterType="com.mvc.pojo.User" >
         <selectKey keyProperty="uid" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into user (uid, upasswd, uname,
-            email, cellphone, cid,
-            regtime, rank, lognum
+        insert into user (uid, cid, regtime,
+            rank, status, nickname,
+            birthday, gender, avatar
         )
-        values (#{uid,jdbcType=INTEGER}, #{upasswd,jdbcType=VARCHAR}, #{uname,jdbcType=VARCHAR},
-            #{email,jdbcType=VARCHAR}, #{cellphone,jdbcType=VARCHAR}, #{cid,jdbcType=INTEGER},
-            #{regtime,jdbcType=TIMESTAMP}, #{rank,jdbcType=TINYINT}, #{lognum,jdbcType=INTEGER}
+        values (#{uid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{regtime,jdbcType=TIMESTAMP},
+            #{rank,jdbcType=TINYINT}, #{status,jdbcType=VARCHAR}, #{nickname,jdbcType=VARCHAR},
+            #{birthday,jdbcType=DATE}, #{gender,jdbcType=VARCHAR}, #{avatar,jdbcType=VARCHAR}
         )
     </insert>
+
     <select id="getMaxUid" resultType="java.lang.Integer" >
         select max(uid) from user
     </select>

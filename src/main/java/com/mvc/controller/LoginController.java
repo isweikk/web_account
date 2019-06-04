@@ -11,6 +11,7 @@ import java.util.regex.Pattern;
 
 import com.mvc.pojo.ApiResult;
 import com.mvc.pojo.ExceptionEnum;
+import com.mvc.pojo.UserAuth;
 import org.apache.log4j.*;
 
 import com.mvc.pojo.User;
@@ -67,6 +68,7 @@ public class LoginController extends HttpServlet {
         String verifyc  = request.getParameter("verifycode");
         String svc =(String) request.getSession().getAttribute("sessionverify");
         User userInfo = null;
+        UserAuth userAuth = null;
 
         if(username == null || password == null){
             return new ModelAndView("login","msg", "输入不能为空！");
@@ -75,16 +77,16 @@ public class LoginController extends HttpServlet {
             return new ModelAndView("login","msg", "验证码错误！");
         }
         if (username.matches(emailRule)) { //email account
-            userInfo = userService.findUserByEmail(username);
+            userAuth = userService.findUserAuthByEmail(username);
         } else if (username.matches(phoneRule)) { //phone account
-            userInfo = userService.findUserByCellphone(username);
+            userAuth = userService.findUserAuthByCellphone(username);
         } else if (username.matches(nameRule)){ //name account
-            userInfo = userService.findUserByUname(username);
+            userAuth = userService.findUserAuthByName(username);
         } else {
             return new ModelAndView("login","msg","用户名不规则！");
         }
 
-        if (userInfo == null) {
+        if (userAuth == null) {
             return new ModelAndView("login","msg","用户名或密码错误！");
         }
 
@@ -93,10 +95,12 @@ public class LoginController extends HttpServlet {
 //        logger.error("cid=" + userInfo.getCid());
 //        logger.error("regtime=" + userInfo.getRegtime());
 //        logger.error("lognum=" + userInfo.getLognum());
-        if(!userInfo.getUpasswd().equals(password)){
+        if(!userAuth.getPassword().equals(password)){
             return new ModelAndView("login","msg", "用户名或密码错误！");
         }
+        userInfo = userService.findUserByUid(userAuth.getSuid());
         writeToSession(userInfo, request);
+        //TODO increate the lognum
         String msg = "用户："+username+",欢迎访问";
         attr.addFlashAttribute("msg", msg);
         return new ModelAndView("home", "msg", msg);
@@ -130,7 +134,8 @@ public class LoginController extends HttpServlet {
         String rePassword = request.getParameter("rePassword");
         String verifyc  = request.getParameter("verifycode");
         String svc =(String) request.getSession().getAttribute("sessionverify");
-        User u = null;
+        User userInfo = null;
+        UserAuth userAuth = null;
 
         if(!svc.equalsIgnoreCase(verifyc)){
             return new ModelAndView("regist","msg", "验证码错误！");
@@ -142,24 +147,24 @@ public class LoginController extends HttpServlet {
             if(!username.matches(nameRule)){
                 return new ModelAndView("regist","msg", "名称不符合规则！");
             }
-            u = userService.findUserByUname(username);
+            userAuth = userService.findUserAuthByName(username);
         } else if (userType.equals(UserType.EMAIL.toString())) {    //email account
             if(!username.matches(emailRule)){
                 return new ModelAndView("regist","msg", "邮箱不符合规则！");
             }
-            u = userService.findUserByEmail(username);
+            userAuth = userService.findUserAuthByEmail(username);
         } else if (userType.equals(UserType.PHONE.toString())) {    //phone account
             if(!username.matches(phoneRule)){
                 return new ModelAndView("regist","msg", "手机不符合规则！");
             }
-            u = userService.findUserByCellphone(username);
+            userAuth = userService.findUserAuthByCellphone(username);
         } else if (userType.equals(UserType.THIRD.toString())) {    //third account
             return new ModelAndView("regist","msg", "不支持第三方登录！");
         } else {
             return new ModelAndView("regist","msg", "账号不支持");
         }
 
-        if (u != null) {
+        if (userAuth != null) {
             return new ModelAndView("regist","msg", "用户已注册！");
         }
 
@@ -170,8 +175,17 @@ public class LoginController extends HttpServlet {
             return new ModelAndView("regist","msg", "两次输入的密码不同！");
         }
 
-        res = userService.addUser(userType, username, password);
+        res = userService.addUser(username);
         if (res.getErrorCode() != ExceptionEnum.NOERROR.getCode()) {
+            return new ModelAndView("regist","msg",  "注册失败：请重试！");
+        }
+        userInfo = userService.findUserByName(username);
+        if (userInfo == null) {
+            return new ModelAndView("regist","msg",  "注册失败：请重试！");
+        }
+        res = userService.addUserAuth(userInfo.getUid(), userType, username, password);
+        if (res.getErrorCode() != ExceptionEnum.NOERROR.getCode()) {
+            //userService.deleteUser();
             return new ModelAndView("regist","msg",  "注册失败：请重试！");
         }
         String msg = "恭喜：" + username + "，注册成功";

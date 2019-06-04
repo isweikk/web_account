@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mvc.dao.UserAuthMapper" >
+  <resultMap id="BaseResultMap" type="com.mvc.pojo.UserAuth" >
+    <id column="Id" property="id" jdbcType="INTEGER" />
+    <result column="suid" property="suid" jdbcType="INTEGER" />
+    <result column="id_type" property="idType" jdbcType="VARCHAR" />
+    <result column="identifier" property="identifier" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="verified" property="verified" jdbcType="VARCHAR" />
+    <result column="bind_time" property="bindTime" jdbcType="TIMESTAMP" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
+    <result column="lognum" property="lognum" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    Id, suid, id_type, identifier, password, verified, bind_time, login_time, lognum
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from user_auth
+    where Id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from user_auth
+    where Id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.mvc.pojo.UserAuth" >
+    insert into user_auth (Id, suid, id_type, 
+      identifier, password, verified, 
+      bind_time, login_time, lognum
+      )
+    values (#{id,jdbcType=INTEGER}, #{suid,jdbcType=INTEGER}, #{idType,jdbcType=VARCHAR}, 
+      #{identifier,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{verified,jdbcType=VARCHAR}, 
+      #{bindTime,jdbcType=TIMESTAMP}, #{loginTime,jdbcType=TIMESTAMP}, #{lognum,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.mvc.pojo.UserAuth" >
+    insert into user_auth
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        Id,
+      </if>
+      <if test="suid != null" >
+        suid,
+      </if>
+      <if test="idType != null" >
+        id_type,
+      </if>
+      <if test="identifier != null" >
+        identifier,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="verified != null" >
+        verified,
+      </if>
+      <if test="bindTime != null" >
+        bind_time,
+      </if>
+      <if test="loginTime != null" >
+        login_time,
+      </if>
+      <if test="lognum != null" >
+        lognum,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="suid != null" >
+        #{suid,jdbcType=INTEGER},
+      </if>
+      <if test="idType != null" >
+        #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null" >
+        #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="verified != null" >
+        #{verified,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null" >
+        #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lognum != null" >
+        #{lognum,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.mvc.pojo.UserAuth" >
+    update user_auth
+    <set >
+      <if test="suid != null" >
+        suid = #{suid,jdbcType=INTEGER},
+      </if>
+      <if test="idType != null" >
+        id_type = #{idType,jdbcType=VARCHAR},
+      </if>
+      <if test="identifier != null" >
+        identifier = #{identifier,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="verified != null" >
+        verified = #{verified,jdbcType=VARCHAR},
+      </if>
+      <if test="bindTime != null" >
+        bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null" >
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lognum != null" >
+        lognum = #{lognum,jdbcType=BIGINT},
+      </if>
+    </set>
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.mvc.pojo.UserAuth" >
+    update user_auth
+    set suid = #{suid,jdbcType=INTEGER},
+      id_type = #{idType,jdbcType=VARCHAR},
+      identifier = #{identifier,jdbcType=VARCHAR},
+      password = #{password,jdbcType=VARCHAR},
+      verified = #{verified,jdbcType=VARCHAR},
+      bind_time = #{bindTime,jdbcType=TIMESTAMP},
+      login_time = #{loginTime,jdbcType=TIMESTAMP},
+      lognum = #{lognum,jdbcType=BIGINT}
+    where Id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
