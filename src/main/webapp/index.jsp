@@ -9,7 +9,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>智慧教育平台</title>
+    <title>AI教育平台</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">

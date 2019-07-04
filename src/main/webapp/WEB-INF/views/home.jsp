@@ -9,7 +9,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>果力智能 - 智慧教育平台</title>
+    <title>AI教育平台</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">
@@ -34,7 +34,7 @@
 <body>
     <div class="logWindow">
         <br /><br />
-        <h1>果力智能 智慧教育平台</h1>
+        <h1>AI教育平台</h1>
         <br />
         <form action="${pageContext.request.contextPath}/user/logout" method="post">
             <input type="submit" value="退出" style="width:130px;height:30px;background-color: aliceblue"/>

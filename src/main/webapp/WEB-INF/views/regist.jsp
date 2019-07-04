@@ -9,7 +9,7 @@
 <head>
     <base href="<%=basePath%>">
 
-    <title>果力智能 - 注册</title>
+    <title>AI - 注册</title>
     <meta http-equiv="pragma" content="no-cache">
     <meta http-equiv="cache-control" content="no-cache">
     <meta http-equiv="expires" content="0">

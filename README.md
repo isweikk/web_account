@@ -1,48 +1,37 @@
-# 腾讯云开发者平台 account_svr
+# [网站账号系统示例]
+    web_account
+    该项目是在学习java过程中做的，比较基础的一个示例，不保证安全性和合理性。
 
-> 技术赋能，助力开发
+## [环境配置]
 
-腾讯云开发者平台免费为开发者提供高效便捷的开发工具与优质的开发管理服务。
+1. IDEA
+2. maven构建
+3. spring + springMVC +mybatis
+4. mysql 5.7
+5. tomcat 9.0.20
 
-包括项目协作、Git/SVN 代码托管、在线编辑器、持续集成等工具。
+## [安装部署]
 
-![平台截图](https://dn-coding-net-production-pp.codehub.cn/4ba18ace-ccc9-45a7-a802-655283eb648a.png)
+1. 安装运行mysql，导入数据库包doc/database/account.sql
+2. 安装tomcat
+3. IDEA中打开工程，注意修改mysql的连接账号和密码
+4. 设置构建目标，选定tomcat位置
+5. 运行成功，访问local:8080/account
 
-## 安装
+> 登录界面
+![avatar](doc/login.png)
 
-1. 准备一个微信
-2. 准备一台电脑
-3. 访问 https://dev.tencent.com
+> 注册界面
+![avatar](doc/register.png)
 
+## [About]
 
+> About me
+- Author    : Kevin
+- Profession: Embedded software engineer(Linux)
+- Industry  : AI, robot, IOT
+- Email     : wkhome90@163.com
 
-## 使用
-
-[帮助文档](https://dev.tencent.com/help/)
-
-[开发者社区](https://feedback.coding.net/)
-
-[官方博客](https://blog.coding.net/)
-
-
-
-## 开发
-
-打开 [Cloud Studio](https://studio.dev.tencent.com/)。
-
-
-
-## 发布历史
-
-
-
-### v4.0710.1
-
-- 新增持续集成 beta 版
-- 优化官网首页及调整导航结构
-- 优化 UI 细节
-
-### v4.0529.1
-- 上线 Pages 验证域名所有权的功能
-- 优化登录注册流程
-- 修复若干已知 bug
+> 其他补充
+- 作者以C/C++为主要技术栈，其他辅助了解python、java、Android、后端和前端技术。
+- 作者毕业时从事硬件设计工作，后来才转到Linux相关的开发，所以对硬件也相当了解。
