@@ -29,7 +29,7 @@
             text-align: center;
         }
     </style>
-    <meta http-equiv="refresh" content="0;url=${pageContext.request.contextPath}/toProfile">
+    <meta http-equiv="refresh" content="0;url=./toProfile">
 </head>
 
 <body>

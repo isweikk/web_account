@@ -30,10 +30,15 @@
             text-align: center;
         }
     </style>
-    <meta http-equiv="refresh" content="0;url=${pageContext.request.contextPath}/toLogin">
+<%--    <meta http-equiv="refresh" content="0;url=${pageContext.request.contextPath}/toLogin">--%>
 </head>
 
 <body>
+    <div class="logWindow">
+        <br /><br />
+        <h1>欢迎来到我的博客</h1>
+        <a href="./toLogin"><p style="font-size: 20px;font-weight:normal;">点击登录</p></a>
+    </div>
 </body>
 </html>
 

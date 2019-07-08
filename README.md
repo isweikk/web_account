@@ -14,7 +14,7 @@
 2. 安装tomcat
 3. IDEA中打开工程，注意修改mysql的连接账号和密码
 4. 设置构建目标，选定tomcat位置
-5. 运行成功，访问local:8080/account
+5. 运行成功，访问local:8080
 
 > 登录界面
 ![avatar](doc/login.png)
@@ -32,6 +32,7 @@
 
 > My Home - [www.xweikk.com](www.xweikk.com) (developing)
 
+网站正在备案，域名后加:8080端口即可访问
 > More
     
 - 作者以C/C++为主要技术栈，其他辅助了解python、java、Android、后端和前端技术。个人网站是我慢慢摸索完成的(Java, Html)。

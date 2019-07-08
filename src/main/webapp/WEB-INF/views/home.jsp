@@ -36,7 +36,7 @@
         <br /><br />
         <h1>AI教育平台</h1>
         <br />
-        <form action="${pageContext.request.contextPath}/user/logout" method="post">
+        <form action="./user/logout" method="post">
             <input type="submit" value="退出" style="width:130px;height:30px;background-color: aliceblue"/>
         </form>
         <p style="font-size: 16px;;color:red;"> ${msg}</p>

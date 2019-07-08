@@ -45,7 +45,7 @@
         <br /><br />
         <h1>登录</h1>
         <br />
-        <form action="${pageContext.request.contextPath}/user/login" method="post">
+        <form action="./user/login" method="post">
             <table align = "center">
                 <tr>
                     <td align="right"><p style="font-size: 16px;">帐号：</p></td>
@@ -65,7 +65,7 @@
                 </td></tr>
             </table>
         </form>
-        <a href="${pageContext.request.contextPath}/toRegist"><p style="font-size: 16px;font-weight:normal;">没有帐号？点击注册</p></a>
+        <a href="./toRegist"><p style="font-size: 16px;font-weight:normal;">没有帐号？点击注册</p></a>
         <p style="font-size: 16px;;color:red;"> ${msg}</p>
     </div>
 </body>

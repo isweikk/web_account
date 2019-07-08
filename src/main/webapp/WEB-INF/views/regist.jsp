@@ -45,11 +45,12 @@
     <br /><br />
     <h1>注册</h1>
     <br />
-    <form action="${pageContext.request.contextPath}/user/regist" method="post">
+    <form action="./user/regist" method="post">
         <table align = "center">
             <tr>
                 <td align="right"><p style="font-size: 16px;">帐号类型：</p></td>
                 <td colspan="2"><input type="text" name="userType" value="${userType}" style="width:200px;height:25px;"/></td>
+                <td align="right"><p style="font-size: 16px;">NAME 或者 EMAIL</p></td>
             </tr>
             <tr>
                 <td align="right"><p style="font-size: 16px;">输入帐号：</p></td>
@@ -73,7 +74,7 @@
             </td></tr>
         </table>
     </form>
-    <a href="${pageContext.request.contextPath}/toLogin"><p style="font-size: 16px;font-weight:normal;">已有帐号，点击登录</p></a>
+    <a href="./toLogin"><p style="font-size: 16px;font-weight:normal;">已有帐号，点击登录</p></a>
     <p style="font-size: 16px;;color:red;"> ${msg}</p>
 </div>
 </body>
