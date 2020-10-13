@@ -28,7 +28,7 @@
     <slf4j.version>1.7.21</slf4j.version>
     <javassist.version>3.16.1-GA</javassist.version>
     <cglib.version>2.2.2</cglib.version>
-    <junit.version>4.11</junit.version>
+    <junit.version>4.13.1</junit.version>
     <servlet.version>4.0.0</servlet.version>
     <jsp.version>2.2</jsp.version>
     <jstl.version>1.1.1</jstl.version>
